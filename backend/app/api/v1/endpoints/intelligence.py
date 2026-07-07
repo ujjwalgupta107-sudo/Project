@@ -1,0 +1,35 @@
+from typing import Annotated, List
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.db.session import get_db
+from app.models.user import User
+from app.schemas.entity import GraphResponse, EntityResponse
+from app.services.graph_service import GraphService
+from app.repositories.entity_repository import EntityRepository
+from app.api.deps import require_investigator
+
+router = APIRouter()
+
+@router.get("/graph", response_model=GraphResponse)
+async def get_fraud_network_graph(
+    current_user: Annotated[User, Depends(require_investigator)],
+    db: Annotated[AsyncSession, Depends(get_db)]
+):
+    """
+    Returns nodes and edges for the frontend Cytoscape graph.
+    Requires investigator privileges.
+    """
+    service = GraphService(db)
+    return await service.get_cytoscape_graph()
+
+@router.get("/entities", response_model=List[EntityResponse])
+async def get_all_entities(
+    current_user: Annotated[User, Depends(require_investigator)],
+    db: Annotated[AsyncSession, Depends(get_db)]
+):
+    """
+    Returns a list of all extracted entities.
+    """
+    repo = EntityRepository(db)
+    return await repo.get_all_entities()
