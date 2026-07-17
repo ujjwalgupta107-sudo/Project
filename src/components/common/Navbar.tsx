@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
-import { Shield, LogOut } from 'lucide-react';
+import { Shield, LogOut, Download } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 
 export function Navbar() {
@@ -18,6 +18,10 @@ export function Navbar() {
           <Link to="/how-it-works" className="hover:text-text-primary transition-colors">How It Works</Link>
           <Link to="/fraud-awareness" className="hover:text-text-primary transition-colors">Fraud Intelligence</Link>
           <Link to="/about" className="hover:text-text-primary transition-colors">About</Link>
+          <a href="/KavachAI.apk" download className="flex items-center gap-1 text-brand-cyan hover:text-brand-cyan/80 transition-colors">
+            <Download className="w-4 h-4" />
+            <span>Download App</span>
+          </a>
         </nav>
 
         <div className="flex items-center gap-4">
