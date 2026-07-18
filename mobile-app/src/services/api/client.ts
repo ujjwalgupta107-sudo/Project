@@ -6,11 +6,14 @@ import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TOKEN_KEY = 'kavach_token';
-// Use environment variable or fallback to localhost
-// For Android emulator: 10.0.2.2, for iOS simulator: localhost
+
+// For physical devices running via Expo Go, use your machine's local network IP.
+// For Android emulator: 10.0.2.2, for iOS simulator: localhost.
+// You can override this by setting EXPO_PUBLIC_API_URL in your .env file.
 const getDefaultBaseUrl = () => {
   if (Platform.OS === 'android') {
-    return 'http://10.0.2.2:8000';
+    // Use local network IP so physical devices can connect
+    return 'http://192.168.1.46:8000';
   }
   return 'http://localhost:8000';
 };

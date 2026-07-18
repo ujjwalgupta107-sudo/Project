@@ -20,7 +20,7 @@ const SAMPLE_SCAM_MESSAGE =
   'Your Aadhaar has been linked to an illegal parcel. A CBI case has been registered. Do not disconnect this call or inform your family. Transfer ₹50,000 to the verification account immediately.';
 
 const tabs = [
-  { icon: 'chatbubble-alert-outline' as const, label: 'Suspicious Message' },
+  { icon: 'chatbubble-outline' as const, label: 'Suspicious Message' },
   { icon: 'image-outline' as const, label: 'Screenshot' },
   { icon: 'mic-outline' as const, label: 'Call Recording' },
   { icon: 'document-text-outline' as const, label: 'Describe Incident' },
